@@ -45,7 +45,7 @@
     const container = document.createElement('div');
     container.id = 'element-inspector-ui';
     container.style.cssText = `
-      position: fixed; top: 20px; right: 20px; width: 450px; max-height: 80vh;
+      position: fixed; top: 20px; right: 20px; width: 480px; max-height: 80vh;
       background-color: #fff; border: 1px solid #ccc; border-radius: 5px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 9999; font-family: Arial, sans-serif;
       overflow: hidden; display: flex; flex-direction: column; font-size: 14px; line-height: 1.4;
@@ -135,7 +135,7 @@
     
     const modeSelect = document.createElement('select');
     modeSelect.className = 'mode-select';
-    modeSelect.style.cssText = 'padding: 6px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; width: 100px;';
+    modeSelect.style.cssText = 'padding: 6px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; width: 160px;';
     
     // Add options for analysis mode
     [
