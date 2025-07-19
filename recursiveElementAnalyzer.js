@@ -458,6 +458,49 @@
         margin-left: 15px;
         margin-top: 5px;
       }
+      
+      /* Architecture Analysis Styles */
+      #element-inspector-ui .architecture-stats {
+        display: flex;
+        gap: 20px;
+        margin: 15px 0;
+      }
+      
+      #element-inspector-ui .stat-group {
+        flex: 1;
+        background: #f9f9f9;
+        padding: 12px;
+        border-radius: 5px;
+        border-left: 3px solid #4CAF50;
+      }
+      
+      #element-inspector-ui .stat-group h4 {
+        margin-top: 0;
+        color: #4CAF50;
+        border-bottom: none;
+        font-size: 14px;
+      }
+      
+      #element-inspector-ui .export-info {
+        background: #e3f2fd;
+        padding: 15px;
+        border-radius: 5px;
+        border-left: 3px solid #2196F3;
+        margin: 15px 0;
+      }
+      
+      #element-inspector-ui .export-info h4 {
+        margin-top: 0;
+        color: #1976D2;
+        border-bottom: none;
+      }
+      
+      #element-inspector-ui .export-info code {
+        background: #fff;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-size: 12px;
+      }
     `;
     document.head.appendChild(styleEl);
   };
@@ -1365,9 +1408,8 @@
     treeContainer.className = 'element-tree-container';
     structureContainer.appendChild(treeContainer);
     
-    // Show the target element structure
-    const elementTree = window.rea.buildElementTree(rootElement, 0, 5); // Limit depth for architecture view
-    treeContainer.appendChild(elementTree);
+    // Show the target element structure  
+    window.rea.buildElementTree(rootElement, treeContainer, 5); // Limit depth for architecture view
   };
 
   window.rea.analyzeElementTree = function(rootElement, selector) {
@@ -2705,7 +2747,7 @@ window.rea.generateHTMLStructure = function() {
     }
     
     // Get clean HTML without scripts and with limited depth
-    const cleanHTML = window.rea.getElementHTMLForExport(element);
+    const cleanHTML = window.rea.getElementHTML(element);
     
     return `<!DOCTYPE html>
 <html lang="en">
@@ -2977,8 +3019,8 @@ window.rea.exportAnalysis = function(stats, analysisTime) {
     }
     
     // SECTION 3: JAVASCRIPT (only if not Structure & CSS Only mode)
-    const currentMode = window.rea.modeSelect ? window.rea.modeSelect.value : 'full';
-    const includeJS = currentMode !== 'structure-css' && window.rea.settings.includeJavaScript;
+    const analysisMode = window.rea.modeSelect ? window.rea.modeSelect.value : 'full';
+    const includeJS = analysisMode !== 'structure-css' && window.rea.settings.includeJavaScript;
     
     if (includeJS) {
       markdown += `## 3. JavaScript\n\n`;
